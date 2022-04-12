@@ -1,41 +1,47 @@
 import React, { useEffect, useState} from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity, TextInput, StatusBar, ScrollView} from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, TextInput, StatusBar, ScrollView, Alert} from 'react-native';
 import axios from 'axios';
 
 
-export default function Connect({navigation}){
+export default function Connect({navigation, props}){
     const[email, setEmail] = useState("")
     const[password, setPassword] = useState("")
+    const[data, setData] = useState([])
 
    const _handlerSignin = async () => {
-        var data = `{"jsonrpc":"2.0", "params":{"db":"odoo15","login": "${email}" ,"password": "${password}","type": "email"}`;
+        // var data = `{"jsonrpc":"2.0", "params":{"db":"odoo15","login": "${email}" ,"password": "${password}"}}`;
     
-        console.log(data);
-    
-        var config = {
-          method: 'post',
-          url: 'http://172.104.45.142/web/session/authenticate',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          data: JSON.stringify({
-            params: {
-              login: email,
-              password: password,
-              type: 'email',
-              db: 'odoo15',
-            },
-          }),
-        }
-        let response = await axios(config);
-        console.log(response.data);
-        if (response.data.result) {
-        console.log('ok');
-        navigation.navigate('Home');
-        } else {
-        Alert('Identifiant incorrecte');
-        }
+        // console.log(data);
 
+        const url = 'http://172.104.45.142/web/session/authenticate';
+
+
+  
+        // const resp = await axios.post(url, JSON.stringify(data))
+
+        fetch(url, {
+          method: 'POST',
+          headers:{
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify( 
+            {"jsonrpc":"2.0", 
+            "params":
+                {"db":"odoo15",
+                "login":"gaincharlie@yahoo.com" ,
+                "password": "123456"
+                }
+            }
+            )
+        }).then( response => response.json()).then(response => {
+          if(response){
+            // console.log("MMMMMMMM:::::::::::", res.result.name)
+            setData(response.result)
+            navigation.navigate('Menu', {data: response.result})
+          }
+          // console.log("IIIIIIIII>>>>>>>::::::", data)
+        })
     }
 
 

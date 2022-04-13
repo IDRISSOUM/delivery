@@ -3,18 +3,17 @@ import {StyleSheet, View, Text, Dimensions, TouchableOpacity, Image, FlatList} f
 export const { width, height} = Dimensions.get('window');
 
 
-export default function Menu({navigation}){
+export default function Menu({navigation, route}){
 
+  const { data } = route.params;
+
+  console.log("LLLL::::::::", route.params.id)
 
     return(
         <View style={styles.container}>
-        <View style={styles.top}><Text style={{flexDirection: 'row-reverse'}}></Text></View>
-        <View style={styles.middle}>
+          <View style={styles.middle}>
         
           </View>
-          <View style={styles.bottom}>
-            
-        </View>
       </View>
     )
 }

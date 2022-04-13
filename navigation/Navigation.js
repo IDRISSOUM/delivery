@@ -3,6 +3,7 @@ import Home from '../screens/Home';
 import Login from '../screens/Login'
 import Connect from '../screens/Connect'
 import Menu from '../screens/Menu'
+import Menu1 from '../screens/Menu1'
 import MenuQr from '../screens/MenuQr'
 import Qrcode from '../screens/Qrcode'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -49,6 +50,12 @@ export function AppNavigator() {
       <Stack.Screen
         name="MenuQr"
         component={MenuQr}
+        options={{}}
+      />
+
+      <Stack.Screen
+        name="Menu1"
+        component={Menu1}
         options={{}}
       />
       

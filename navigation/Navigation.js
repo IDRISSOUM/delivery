@@ -4,7 +4,7 @@ import Login from '../screens/Login'
 import Connect from '../screens/Connect'
 import Menu from '../screens/Menu'
 import MenuQr from '../screens/MenuQr'
-import Qrcode from '../screens/Qrcode'
+// import Qrcode from '../screens/Qrcode'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -52,11 +52,11 @@ export function AppNavigator() {
         options={{}}
       />
 
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Qrcode"
         component={Qrcode}
         options={{}}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

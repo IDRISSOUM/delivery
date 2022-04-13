@@ -3,7 +3,7 @@ import {View, Button, Text, StyleSheet, Image, SafeAreaView, TouchableOpacity, I
 export const { width, height} = Dimensions.get('window');
 
 
-export default function Menu({navigation}){
+export default function MenuQr({navigation}){
 
 
     return(
@@ -33,7 +33,7 @@ export default function Menu({navigation}){
                     <View style={{flex: 4,flexDirection: 'row',justifyContent: 'center'}}>
                         <View style={{flexDirection: 'row',  shadowOffset: {width: 0, height: 10, }, shadowOpacity: 0.10, shadowRadius: 10.32, elevation: 0, }}>
                             <TouchableOpacity style={{justifyContent: 'center'}}
-                                onPress = {() => navigation.navigate('Qrcode')}>
+                                onPress = {() => navigation.navigate('')}>
                                 <Text style={styles.button}>Scanne</Text>
                             </TouchableOpacity>
                         </View>

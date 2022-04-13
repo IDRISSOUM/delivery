@@ -33,7 +33,7 @@ export default function MenuQr({navigation}){
                     <View style={{flex: 4,flexDirection: 'row',justifyContent: 'center'}}>
                         <View style={{flexDirection: 'row',  shadowOffset: {width: 0, height: 10, }, shadowOpacity: 0.10, shadowRadius: 10.32, elevation: 0, }}>
                             <TouchableOpacity style={{justifyContent: 'center'}}
-                                onPress = {() => navigation.navigate('')}>
+                                onPress = {() => navigation.navigate('Qrcode')}>
                                 <Text style={styles.button}>Scanne</Text>
                             </TouchableOpacity>
                         </View>

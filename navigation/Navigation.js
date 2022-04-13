@@ -1,10 +1,13 @@
 import React from 'react';
-import Home from '../screens/Home'
+import Home from '../screens/Home';
 import Login from '../screens/Login'
 import Connect from '../screens/Connect'
 import Menu from '../screens/Menu'
 import MenuQr from '../screens/MenuQr'
 // import Qrcode from '../screens/Qrcode'
+import Connect from '../screens/Connect';
+import Menu from '../screens/Menu';
+import Qrcode from '../screens/Qrcode'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -57,6 +60,22 @@ export function AppNavigator() {
         component={Qrcode}
         options={{}}
       /> */}
+      
+      <Stack.Screen
+        name="Menu"
+        component={Menu}
+        options={{
+          header: () => null,
+        }}
+      />
+
+      <Stack.Screen
+        name="Qrcode"
+        component={Qrcode}
+        options={{
+          header: () => null,
+        }}
+      />
     </Stack.Navigator>
   );
 }

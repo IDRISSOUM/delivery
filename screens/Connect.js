@@ -34,11 +34,19 @@ export default function Connect({navigation, props}){
                 }
             }
             )
+<<<<<<< HEAD
         }).then( response => response.json()).then(response => {
           if(response){
             // console.log("MMMMMMMM:::::::::::", res.result.name)
             setData(response.result)
             navigation.navigate('Menu', {data: response.result})
+=======
+        }).then( res => res.json()).then(res => {
+          if(res){
+            // console.log("MMMMMMMM:::::::::::", res.result.name)
+            setData(res.result)
+            navigation.navigate('Menu', {data: res.result})
+>>>>>>> 45f70ee6a5f2b6f35b35cf2fa204f357ecc06cb4
           }
           // console.log("IIIIIIIII>>>>>>>::::::", data)
         })

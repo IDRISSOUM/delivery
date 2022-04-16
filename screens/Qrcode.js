@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+export const { width, height} = Dimensions.get('window');
 
 import {
   AppRegistry,
@@ -6,7 +7,8 @@ import {
   Text,
   TouchableOpacity,
   Linking,
-  View
+  View,
+  Dimensions
 } from 'react-native';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -19,15 +21,13 @@ export default function Qrcode({navigation}) {
     const[result, setResult] = useState(null)
 
     useEffect(() => {
-        setResult(null);
-    }, [])
+      setScanned(false)
+    }, [scanned])
 
 
     const sendProductData = (data) => {
         navigation.navigate("Menu1", { id: data});
-        // console.log(data.restaurant_name)
-        console.log('0000000005485')
-        console.log('MMMM>>>>::::::::', data)
+        // console.log('MMMM>>>>::::::::', data)
       };
     
 

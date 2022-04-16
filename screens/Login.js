@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity, StatusBar} from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, StatusBar, Dimensions} from 'react-native';
+export const { width, height} = Dimensions.get('window');
 
 export default function Login ({navigation}){
 
     return (
-        <View style={{flex:1,backgroundColor: '#FFFFFF'}}>
+        <View style={{flex:1,backgroundColor: '#FFFFFF', width: width,  height: height,}}>
+            <StatusBar />
                 <View style={{flex:1,flexDirection: 'column'}}>
                     <View style={{flex: 4,flexDirection: 'row'}}>
                         <View style={{flex:5.8,justifyContent: 'center'}}>
@@ -54,8 +56,8 @@ const styles = StyleSheet.create({
     },
     image: {
         marginBottom: 40,
-        width: 40,
-        height: 40
+        width: 30,
+        height: 30
     },
     button :{ 
         color:"#000000",

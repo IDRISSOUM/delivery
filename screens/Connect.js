@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity, TextInput, StatusBar, ScrollView, Alert} from 'react-native';
-import axios from 'axios';
-
+import { Text, View, Image, StyleSheet, TouchableOpacity, TextInput, StatusBar, ScrollView, Alert, Dimensions} from 'react-native';
+export const { width, height} = Dimensions.get('window');
 
 export default function Connect({navigation, props}){
     const[email, setEmail] = useState("")
@@ -15,10 +14,6 @@ export default function Connect({navigation, props}){
 
         const url = 'http://172.104.45.142/web/session/authenticate';
 
-
-  
-        // const resp = await axios.post(url, JSON.stringify(data))
-
         fetch(url, {
           method: 'POST',
           headers:{
@@ -29,20 +24,19 @@ export default function Connect({navigation, props}){
             {"jsonrpc":"2.0", 
             "params":
                 {"db":"odoo15",
-                "login":"gaincharlie@yahoo.com" ,
-                "password": "123456"
+                "login":"drivera@gmail.com" ,
+                "password": "drivera"
                 }
             }
             )
         }).then( response => response.json()).then(response => {
           if(response){
-            // console.log("MMMMMMMM:::::::::::", res.result.name)
             setData(response.result)
             navigation.navigate('Menu', {data: response.result})
           }
-          // console.log("IIIIIIIII>>>>>>>::::::", data)
         })
     }
+
 
 
     return (
@@ -93,6 +87,8 @@ const styles = StyleSheet.create({
       backgroundColor: "#FFFFFF",
       alignItems: "center",
       justifyContent: "center",
+      width: width,
+      height: height,
     },
    
     image: {

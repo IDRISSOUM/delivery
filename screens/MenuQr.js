@@ -7,7 +7,7 @@ export default function MenuQr({navigation}){
 
 
     return(
-        <View style={{flex:1,backgroundColor: '#FFFFFF'}}>
+        <View style={{flex:1,backgroundColor: '#FFFFFF', width: width, height: height}}>
                 {/* <ImageBackground source={require('../assets/open.jpg')}
                 style={{width: '100%', height: '100%', position: 'absolute',}}
                 imageStyle={{opacity: 0.2}}

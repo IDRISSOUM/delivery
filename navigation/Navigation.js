@@ -24,6 +24,9 @@ export function AppNavigator() {
         component={Home}
         options={{
           title: 'Welcome to Delivery App',
+          headerTitleStyle: {
+            alignItems: 'center'
+          },
         }}
       />
       <Stack.Screen
@@ -31,6 +34,10 @@ export function AppNavigator() {
         component={Login}
         options={{
           title: 'Login',
+          justifyContent: 'center',
+          headerTitleStyle: {
+            alignItems: 'center'
+          },
         }}
       />
       <Stack.Screen
@@ -38,13 +45,18 @@ export function AppNavigator() {
         component={Connect}
         options={{
           header: () => null,
+          
         }}
       />
 
       <Stack.Screen
         name="Menu"
         component={Menu}
-        options={{}}
+        options={{
+          headerTitleStyle: {
+            alignItems: 'center'
+          },
+        }}
       />
 
       <Stack.Screen
@@ -56,7 +68,10 @@ export function AppNavigator() {
       <Stack.Screen
         name="Menu1"
         component={Menu1}
-        options={{}}
+        options={{
+          headerTitleStyle: {
+          },
+        }}
       />
       
       <Stack.Screen

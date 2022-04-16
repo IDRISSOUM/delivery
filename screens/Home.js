@@ -1,13 +1,14 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground, Dimensions} from 'react-native';
+export const { width, height} = Dimensions.get('window');
 
 export default function Home ({navigation}){
 
     return (
-        <View style={{flex:1,}}>
+        <View style={{flex:1, width: width, height: height}}>
                 <ImageBackground source={require('../assets/j.jpg')}
                 style={{width: '100%', height: '100%', position: 'absolute',}}
-                imageStyle={{opacity: 0.1}}
+                imageStyle={{opacity: 0}}
                 ></ImageBackground>
                 <View style={{flex:1,flexDirection: 'column'}}>
                     <View style={{flex: 4,flexDirection: 'row'}}>

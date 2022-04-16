@@ -6,11 +6,6 @@ export const { width, height} = Dimensions.get('window');
 export default function Menu({route, navigation}){
 
     const { data } = route.params;
-    
-    // console.log("PPPPPPPPPPP<<<<>>>>>>>>::::::::", route.params.data.name)
-    
-    // console.log("PPPPPPPPPPP<<<<>>>>>>>>::::::::", props.route.params.data.name)
-    // console.log("NNNNNN???????", data)
 
     return(
         <View style={styles.container}>
@@ -66,7 +61,8 @@ const styles = StyleSheet.create({
       justifyContent: "space-between",
       backgroundColor: "#fff",
       padding: 0,
-      margin: 10,
+      width: width,
+      height: height,
     },
     top: {
       flex: 0.5,

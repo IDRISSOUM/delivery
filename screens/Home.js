@@ -1,93 +1,56 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
+export const { width, height} = Dimensions.get('window');
 
 export default function Home ({navigation}){
 
     return (
-        <View style={{flex:1,}}>
-                <ImageBackground source={require('../assets/j.jpg')}
-                style={{width: '100%', height: '100%', position: 'absolute',}}
-                imageStyle={{opacity: 0.1}}
-                ></ImageBackground>
-                <View style={{flex:1,flexDirection: 'column'}}>
-                    <View style={{flex: 4,flexDirection: 'row'}}>
-                        <View style={{flex:5.8,justifyContent: 'center'}}>
-                            <Image style={{flex:0.5,resizeMode: 'center',alignSelf: 'center',}}
-                            source={require('../assets/food.png')} />
-                        </View>
-                    </View>
-                    <View style={{flex: 2,flexDirection: 'column',justifyContent: 'center'}}>
-                        <View style={{flex: 1,flexDirection: 'row',justifyContent: 'center'}}>
-                            <Text style={{fontSize: 20, textAlignVertical:'center', justifyContent: 'center',textAlign:'center',fontFamily: 'recusive', fontStyle:'italic'}}>Discover the restaurant menu {"\n"} and place your order {"\n"} now !</Text>
-                        </View>
-                    </View>
-                    <View style={{flex: 4,flexDirection: 'row',justifyContent: 'center'}}>
-                        <View style={{flexDirection: 'row',  shadowOffset: {width: 0, height: 10, }, shadowOpacity: 0.10, shadowRadius: 10.32, elevation: 0, }}>
-                            <TouchableOpacity style={{justifyContent: 'center'}}
-                                onPress = {() => navigation.navigate('Login')}>
-                                <Text style={styles.button}>Let's Go</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
+        <View style={styles.container}>
+            {/* <View style={styles.top}><TouchableOpacity style={{flexDirection: 'row'}}>Chronometre</TouchableOpacity></View> */}
+            <View style={styles.middle}>
+                <Text style={styles.text1}>
+                    welcome to a demo application
+                </Text>
             </View>
+            <View style={[styles.bottom, {justifyContent: 'center', flexDirection: 'row'}]}>
+                <TouchableOpacity onPress={() => navigation.navigate('Login')} style={{justifyContent: 'center', }}>
+                    <Text style={[styles.text, {fontSize: 25,}]}>
+                        Let's Go
+                    </Text>
+                </TouchableOpacity>
+            </View>
+      </View>
     );
 }
 
 const styles = StyleSheet.create({
-    rating: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        paddingTop: 20,
-        marginTop: 30,
-        borderTopWidth: 1,
-        borderTopColor: '#FFFFFF',
-        left: 0,
-        top: -200,
-        shadowOffset: {
-            width: 0,
-            height: 10,
-        },
-        shadowOpacity: 0.10,
-        shadowRadius: 10.32,
-        
-        elevation: 200,
+    container: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+    width: width,  
+    height: height,
     },
-    rating1: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        paddingTop: 20,
-        marginTop: 30,
-        borderTopWidth: 1,
-        borderTopColor: '#FFFFFF',
-        left: 0,
-        top: -120,
-        shadowOffset: {
-            width: 0,
-            height: 10,
-        },
-        shadowOpacity: 0.10,
-        shadowRadius: 10.32,
-        
-        elevation: 0,
+    top: {
+    flex: 0.5,
+    backgroundColor: "white",
     },
-    buttonCircle: {
-        height:40,
-        width:109,
-        backgroundColor: '#FFFFFF',
-        borderRadius: 20,
-        shadowOffset: {
-            width: 0,
-            height: 10,
-            
-        },
-        shadowOpacity: 0.10,
-        shadowRadius: 10.32,
-        
-        elevation: 5,
+    middle: {
+    flex: 5,
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    alignItems: "center"
+    },
 
+    bottom: {
+    flex: 2,
+    backgroundColor: "pink",
     },
-    button :{ 
+
+    text: {
+    fontSize: 20,
+    fontWeight: "bold",
+    fontFamily: 'italic',
     color:"#00BCD4",
     fontSize: 25,
     borderRadius:30,
@@ -101,5 +64,8 @@ const styles = StyleSheet.create({
     shadowRadius: 10.32,
     
     elevation: 5,
-},
-})
+    },
+    text1: {
+        fontSize: 20,
+    }
+});

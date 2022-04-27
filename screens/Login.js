@@ -1,68 +1,41 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity, StatusBar} from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, StatusBar, Dimensions} from 'react-native';
+export const { width, height} = Dimensions.get('window');
 
 export default function Login ({navigation}){
 
     return (
-        <View style={{flex:1,backgroundColor: '#FFFFFF'}}>
-                <View style={{flex:1,flexDirection: 'column'}}>
-                    <View style={{flex: 4,flexDirection: 'row'}}>
-                        <View style={{flex:5.8,justifyContent: 'center'}}>
-                            <Image style={{flex:0.5,resizeMode: 'center',alignSelf: 'center',}}
-                            source={require('../assets/O_Food.png')} />
-                        </View>
-                    </View>
-                    <View style={{flex: 2,flexDirection: 'column',justifyContent: 'center'}}>
-                        <View style={{flex: 1,flexDirection: 'row',justifyContent: 'center'}}>
-                        <TouchableOpacity onPress={() => navigation.navigate('')} style={[styles.button, {justifyContent: 'center',}]}>
-                            <Text style={{fontSize: 20, textAlign: 'center'}}>Sign Up with Facebook</Text>
-                        </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={{flex: 2,flexDirection: 'row'}}>
-                        <View style={{flex:5.8,justifyContent: 'center'}}>
-                            <TouchableOpacity onPress={() => navigation.navigate('')} style={[styles.button, {justifyContent: 'center',}]}>
-                                <Text style={{fontSize: 20, textAlign: 'center', backgroundColor: '#fff'}}>Sign Up with Facebook</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-
-                    <View style={{flex: 1,flexDirection: 'row', }}>
-                        <View style={{flex:5.8,justifyContent: 'center',}}>
-                            <Text style={{fontSize: 30, textAlign: 'center',}}>Or</Text>
-                        </View>
-                    </View>
-                    <View style={{flex: 4,flexDirection: 'row',justifyContent: 'center', }}>
-                        <View style={{flexDirection: 'row',  shadowOffset: {width: 0, height: 10, }, shadowOpacity: 0.10, shadowRadius: 10.32, elevation: 0, }}>
-                            <TouchableOpacity style={{justifyContent: 'center', }}
-                                onPress = {() => navigation.navigate('Connect')}>
-                                <Text style={[styles.button,{fontSize: 25, backgroundColor: '#00BCD4'}]}>Login</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-            </View>
+        <View style={styles.container}>
+            <View style={styles.top}><Text style={{flexDirection: 'row-reverse'}}></Text></View>
+            <View style={styles.middle}><Text style={{fontSize: 20, fontWeight: 'bold'}}>Hello family</Text></View>
+            <View style={styles.bottom}></View>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+    width: width,  
+    height: height,
     },
-    logo: {
-        flex: 1,
+    top: {
+    flex: 0.5,
+    backgroundColor: "white",
+    borderWidth: 0.5,
     },
-    image: {
-        marginBottom: 40,
-        width: 40,
-        height: 40
+    middle: {
+    flex: 5,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 0.5,
+    justifyContent: "center",
+    alignItems: "center"
     },
-    button :{ 
-        color:"#000000",
-        borderRadius:15,
-        padding: '3%',
-        shadowOffset: {
-            width: 10,
-            height: 10,
-    },}
-})
+    bottom: {
+    flex: 2,
+    backgroundColor: "pink",
+    borderWidth: 0.5,
+    },
+});

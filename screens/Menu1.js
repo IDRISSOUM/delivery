@@ -67,8 +67,8 @@ export default function Menu({navigation, route}){
                 <TouchableOpacity style={{ width: '75%', alignContent: 'center' }} onPress={() => navigation.navigate('Details', {item, data: route.params.id})}>
                   <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>
                     {item.seqno}
-                    <Text style={[styles.responses1, { }]}>{item.area_name}</Text>
                   </Text>
+                  <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>{item.area_name}</Text>
                 </TouchableOpacity>
                 </View>
               </>

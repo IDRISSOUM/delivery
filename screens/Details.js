@@ -30,18 +30,50 @@ const Details = (props) => {
     })
     .then((response) => response.json())
     .then((json) => {
-        console.log("???????????", json.result)
-        setData1(json.result)
+        console.log("???????????", json.result.message)
+        setData1(json.result.message)
     })
     .catch((error) => console.error('::::::::::::::::"""""""' ,error))
     
     }
 
     return (
-        <View>
-            <Text>HHHHHHHHHHH</Text>
+        <View style={styles.container}>
+            <StatusBar barStyle="auto" />
+            <View style={{textAlign: 'center',}}>
+                <Text style={{fontSize: 20, fontWeight: '800', color: '#000'}}>{getdata1}</Text>
+            </View>
+            <View>
+                <TouchableOpacity onPress={() => { }} style={styles.button}>
+                    <Text style={styles.buttonText}>To take a picture</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
 
 export default Details;
+
+const styles = StyleSheet.create({
+container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
+},
+button: {
+    justifyContent: 'center',
+    width: '80%',
+    
+},
+buttonText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    backgroundColor: '#45d8d8'
+},
+timerText: {
+    color: '#fff',
+    fontSize: 30,
+    marginBottom: 20
+},
+});

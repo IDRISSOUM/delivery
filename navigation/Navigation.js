@@ -6,6 +6,7 @@ import Menu from '../screens/Menu'
 import Menu1 from '../screens/Menu1'
 import MenuQr from '../screens/MenuQr'
 import Qrcode from '../screens/Qrcode'
+import Details from '../screens/Details';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -79,6 +80,14 @@ export function AppNavigator() {
         component={Qrcode}
         options={{
           header: () => null,
+        }}
+      />
+
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{
+          // header: () => null,
         }}
       />
     </Stack.Navigator>

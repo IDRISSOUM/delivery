@@ -14,6 +14,7 @@ MERGED from [:react-native-gesture-handler] /Users/mac/delivery/node_modules/rea
 MERGED from [:react-native-permissions] /Users/mac/delivery/node_modules/react-native-permissions/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-safe-area-context] /Users/mac/delivery/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/mac/delivery/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-vector-icons] /Users/mac/delivery/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:react-native:0.67.4] /Users/mac/.gradle/caches/transforms-3/221c71d43dbd5b88bd9ef5161912c98c/transformed/jetified-react-native-0.67.4/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/mac/.gradle/caches/transforms-3/6f5c17ce33458f1ff2d981e9d83c7fbd/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/mac/.gradle/caches/transforms-3/7833aef98249bb916b876618bad102cb/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -248,6 +249,8 @@ MERGED from [:react-native-safe-area-context] /Users/mac/delivery/node_modules/r
 MERGED from [:react-native-safe-area-context] /Users/mac/delivery/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/mac/delivery/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/mac/delivery/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /Users/mac/delivery/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /Users/mac/delivery/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.67.4] /Users/mac/.gradle/caches/transforms-3/221c71d43dbd5b88bd9ef5161912c98c/transformed/jetified-react-native-0.67.4/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.67.4] /Users/mac/.gradle/caches/transforms-3/221c71d43dbd5b88bd9ef5161912c98c/transformed/jetified-react-native-0.67.4/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/mac/.gradle/caches/transforms-3/6f5c17ce33458f1ff2d981e9d83c7fbd/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44

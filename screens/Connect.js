@@ -42,7 +42,7 @@ export default function Connect({navigation, props}){
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-            <View style={{paddingTop: 30, justifyContent: 'space-evenly'}}>
+            <View style={{paddingTop: 30, justifyContent: 'space-evenly', alignItems: 'center'}}>
                 <Image style={styles.image} source={require("../assets/food.png")} />
                 <Text style={{paddingBottom: 50, fontSize: 20, fontWeight: 'bold', fontFamily: 'italic'}}>Welcome to back</Text>
             </View>
@@ -93,14 +93,15 @@ const styles = StyleSheet.create({
    
     image: {
       marginBottom: 50,
-      width: 150,
-      height: 150
+      width: 100,
+      height: 100,
+      
     },
    
     inputView: {
       backgroundColor: "#f0f8ff",
       borderRadius: 20,
-      width: "70%",
+      width: "90%",
       height: 60,
       marginBottom: 20,
       alignItems: "center",
@@ -110,8 +111,8 @@ const styles = StyleSheet.create({
     TextInput: {
       height: 50,
       flex: 1,
-      padding: 15,
-      marginLeft: 20,
+      // padding: 15,
+      // marginLeft: 20,
       borderStyle: 'solid'
     },
    
@@ -130,6 +131,6 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
       marginTop: 40,
-      backgroundColor: "#1e90ff",
+      backgroundColor: "#00BCD4",
     },
   });

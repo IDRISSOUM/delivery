@@ -27,30 +27,15 @@ export default function Qrcode({navigation}) {
 
     const sendProductData = (data) => {
         navigation.navigate("Menu1", { id: data});
-        // console.log('MMMM>>>>::::::::', data)
       };
     
 
-//   const onSuccess = e => {
-//     setResult(e);
-//     setScan(false);
-
-//     if(e.data === 'http'){
-//         console.log("kkkkkkkk", e.data)
-//     }
-//   };
 
   const handleBarCodeScanned = ({type, data}) => {
     let dataObj = data;
     setScanned(true);
     
     sendProductData(dataObj);
-    //alert(`data in  code bar is ${data} has been scanned!`);
-    // console.log(dataObj.company_id)
-    // console.log(dataObj.table_unique_name)
-    // console.log('jggffgdffghgjhgfdxfcghjhgfd')
-    // console.log(dataObj.restaurant_name)
-    // console.log(dataObj.table_name)
   };
 
   
@@ -76,9 +61,9 @@ export default function Qrcode({navigation}) {
                 {/* <Text style={styles.buttonText}>OK. Got it!</Text> */}
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonTouchable} onPress={() => setScanned(false)}>
+            {/* <TouchableOpacity style={styles.buttonTouchable} onPress={() => setScanned(false)}>
                 <Text style={styles.buttonText}>STOP</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             </>
         }
       />

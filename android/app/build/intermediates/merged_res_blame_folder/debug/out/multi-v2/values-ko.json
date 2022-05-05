@@ -38,6 +38,23 @@
                     }
                 },
                 {
+                    "source": "/Users/mac/.gradle/caches/transforms-3/ede209314179b91289413b8be3352c84/transformed/jetified-ucrop-2.2.6-native/res/values-ko/values-ko.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,112,164",
+                        "endColumns": "56,51,46",
+                        "endOffsets": "107,159,206"
+                    },
+                    "to": {
+                        "startLines": "49,50,51",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "5301,5358,5410",
+                        "endColumns": "56,51,46",
+                        "endOffsets": "5353,5405,5452"
+                    }
+                },
+                {
                     "source": "/Users/mac/.gradle/caches/transforms-3/9f18c6b50baa776d71894ad120630276/transformed/core-1.6.0/res/values-ko/values-ko.xml",
                     "from": {
                         "startLines": "2",

@@ -17,6 +17,10 @@ import org.reactnative.maskedview.RNCMaskedViewPackage;
 import org.reactnative.camera.RNCameraPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
+// react-native-image-crop-picker
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
+// react-native-image-picker
+import com.imagepicker.ImagePickerPackage;
 // react-native-permissions
 import com.zoontek.rnpermissions.RNPermissionsPackage;
 // react-native-safe-area-context
@@ -73,6 +77,8 @@ public class PackageList {
       new RNCMaskedViewPackage(),
       new RNCameraPackage(),
       new RNGestureHandlerPackage(),
+      new PickerPackage(),
+      new ImagePickerPackage(),
       new RNPermissionsPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),

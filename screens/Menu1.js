@@ -12,7 +12,7 @@ export default function Menu({navigation, route}){
 
   useEffect(() => {
     getAllData();
-  }, []);
+  }, [getdata]);
 
   const getAllData = () => {
     fetch('http://172.104.45.142/get/trip/order/', {
@@ -44,6 +44,10 @@ export default function Menu({navigation, route}){
   
   }
 
+  // const edit = ({item, }) => {
+
+  // }
+
     return (
       <View style={styles.container}>
         <ScrollView style={{}}>
@@ -63,8 +67,8 @@ export default function Menu({navigation, route}){
                 </Text>
               </View>
 
-              <View key={item.seqno} style={{ flexDirection: 'row', justifyContent: 'center',  }}>
-                <TouchableOpacity style={{ width: '75%', alignContent: 'center' }} onPress={() => navigation.navigate('Details', {item, data: route.params.id})}>
+              <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
+                <TouchableOpacity key={item.id} value={item.seqno} style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}} disabled={false}>
                   <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>
                     {item.seqno}
                   </Text>

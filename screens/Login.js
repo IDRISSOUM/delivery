@@ -15,7 +15,7 @@ export default function Login ({navigation}){
 
                     <View style={{flex: 2,flexDirection: 'row',justifyContent: 'center'}}>
                         <TouchableOpacity onPress={() => navigation.navigate('')} style={{ width: '90%' }}>
-                            <Text style={[styles.button, {fontSize: 25, textAlign: 'center', backgroundColor: '#00BCD4'}]}>Sign Up with Facebook</Text>
+                            <Text style={[styles.button, {fontSize: 25, textAlign: 'center', backgroundColor: '#00BCD4'}]}>Sign Up with Google</Text>
                         </TouchableOpacity>
                     </View>
                     

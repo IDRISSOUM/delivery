@@ -8,9 +8,6 @@ export default function Connect({navigation, props}){
     const[data, setData] = useState([])
 
    const _handlerSignin = async () => {
-        // var data = `{"jsonrpc":"2.0", "params":{"db":"odoo15","login": "${email}" ,"password": "${password}"}}`;
-    
-        // console.log(data);
 
         const url = 'http://172.104.45.142/web/session/authenticate';
 

@@ -21,7 +21,7 @@ export default function MenuQr({navigation}){
                     </View>
                     <View style={{flex: 2,flexDirection: 'column',justifyContent: 'center'}}>
                         <View style={{flex: 1,flexDirection: 'row',justifyContent: 'center'}}>
-                            <Text style={{fontSize: 20, textAlignVertical:'center', justifyContent: 'center',textAlign:'center',fontFamily: 'recusive', fontStyle:'italic'}}>Decouvrez la carte du restaurant {"\n"} et passez votre commande {"\n"} maintenant !</Text>
+                            <Text style={{fontSize: 20, textAlignVertical:'center', justifyContent: 'center',textAlign:'center',fontFamily: 'recusive', fontStyle:'italic'}}>please scan an order{"\n"} to retrieve delivery details!</Text>
                         </View>
                     </View>
                     <View style={{flex: 2,flexDirection: 'row'}}>
@@ -34,7 +34,7 @@ export default function MenuQr({navigation}){
                         <View style={{flexDirection: 'row',  shadowOffset: {width: 0, height: 10, }, shadowOpacity: 0.10, shadowRadius: 10.32, elevation: 0, }}>
                             <TouchableOpacity style={{justifyContent: 'center'}}
                                 onPress = {() => navigation.navigate('Qrcode')}>
-                                <Text style={styles.button}>Scanne</Text>
+                                <Text style={styles.button}>to scan</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

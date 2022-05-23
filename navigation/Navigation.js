@@ -17,7 +17,8 @@ export function AppNavigator() {
         screenOptions={{
           headerMode: 'screen',
           headerTintColor: 'white',
-          headerStyle: { backgroundColor: 'tomato' },
+          headerStyle: { backgroundColor: '#47E3FF' },
+          headerTitleAlign: 'center'
         }}
       >
       <Stack.Screen
@@ -41,14 +42,14 @@ export function AppNavigator() {
           },
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Connect"
         component={Connect}
         options={{
           header: () => null,
           
         }}
-      />
+      /> */}
 
       <Stack.Screen
         name="Menu"

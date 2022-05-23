@@ -1,43 +1,42 @@
 import React, { useEffect, useState, useRef } from 'react';
 import {StyleSheet, View, Text, Dimensions, TouchableOpacity, Image, FlatList, ScrollView, StatusBar,Button} from 'react-native';
 export const { width, height} = Dimensions.get('window');
-import ImagePicker from 'react-native-image-crop-picker';
+// import ImagePicker from 'react-native-image-crop-picker';
 
 const Details = (props) => {
     const[getdata1, setData1] = useState([])
     const { item, data } = props.route.params;
 
-    const openGallery = () => {
-        ImagePicker.openCamera({
-            width: 300,
-            height: 300,
-            cropping: true,
-        }).then(image => {
-        console.log(image);
-        }).catch(error => {
-            if (error.code === 'E_PICKER_CANCELLED') { // here the solution
-                return false;
-            }
-        });;  
-    }
+    // const openGallery = () => {
+    //     ImagePicker.openCamera({
+    //         width: 300,
+    //         height: 300,
+    //         cropping: true,
+    //     }).then(image => {
+    //     console.log(image);
+    //     }).catch(error => {
+    //         if (error.code === 'E_PICKER_CANCELLED') { // here the solution
+    //             return false;
+    //         }
+    //     });;  
+    // }
 
-    const selectFromGallery = () => {
-        ImagePicker.openPicker({
-            width: 300,
-            height: 300,
-            cropping: true
-        }).then(image => {
-        console.log(image.path);
-        }).catch(error => {
-            if (error.code === 'E_PICKER_CANCELLED') { // here the solution
-                return false;
-            }
-        });;
-    }
+    // const selectFromGallery = () => {
+    //     ImagePicker.openPicker({
+    //         width: 300,
+    //         height: 300,
+    //         cropping: true
+    //     }).then(image => {
+    //     console.log(image.path);
+    //     }).catch(error => {
+    //         if (error.code === 'E_PICKER_CANCELLED') { // here the solution
+    //             return false;
+    //         }
+    //     });;
+    // }
 
     useEffect(() => {
         getAllData();
-        sendImageData();
     }, []);
     
     const getAllData = () => {
@@ -64,32 +63,32 @@ const Details = (props) => {
     
     }
 
-    const sendImageData = async () => {
-        const url = 'http://172.104.45.142:8069/create/trip/order/picture/'
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
+    // const sendImageData = async () => {
+    //     const url = 'http://172.104.45.142:8069/create/trip/order/picture/'
+    //     fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-Type': 'application/json',
                 
-            },
-            body: JSON.stringify({
-                params:{
-                    "serial_number": props.route.params.data,
-                    "area": props.route.params.item.area_name,
-                    // "doc_image": ,
+    //         },
+    //         body: JSON.stringify({
+    //             params:{
+    //                 "serial_number": props.route.params.data,
+    //                 "area": props.route.params.item.area_name,
+    //                 // "doc_image": ,
                     
-                }
-            })
-        })
-        .then((response) => response.json())
-        .then((json) => {
-            console.log("???????????", json.result.message)
-            setData1(json.result.message)
-        })
-        .catch((error) => console.error('::::::::::::::::"""""""' ,error))
+    //             }
+    //         })
+    //     })
+    //     .then((response) => response.json())
+    //     .then((json) => {
+    //         console.log("???????????", json.result.message)
+    //         setData1(json.result.message)
+    //     })
+    //     .catch((error) => console.error('::::::::::::::::"""""""' ,error))
         
-    }
+    // }
 
     return (
         <View style={styles.container}>
@@ -97,7 +96,7 @@ const Details = (props) => {
             <View style={{textAlign: 'center',}}>
                 <Text style={{fontSize: 16, fontWeight: 'bold', color: '#000', textTransform: 'uppercase', textAlign: 'justify'}}>{getdata1}</Text>
             </View>
-            <View style={{justifyContent: 'center'}}>
+            {/* <View style={{justifyContent: 'center'}}>
                 <TouchableOpacity onPress={openGallery}
                 style={{
                     justifyContent: 'center',
@@ -135,7 +134,7 @@ const Details = (props) => {
                     </Text>
                 </TouchableOpacity>
                 
-            </View>
+            </View> */}
         </View>
     );
 };

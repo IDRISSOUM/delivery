@@ -36,60 +36,55 @@ export default function Menu({navigation, route}){
       navigation.navigate('Qrcode')
           
     }else{
-      let conData = json.result.response
-      console.log("KKKKKKKKKKKK", conData)
-      let conData1 = json.result.area
-      console.log("KKKKKKKKKKKK", conData1)
+      var conData = json.result.Trip
+      console.log("KKKKKKKKKKKK", json.result.Trip)
+      var conData1 = json.result.areas
       setGetData(conData.concat(conData1));
+
+      // console.log("KKKKKKKKKKKK", conData.concat(conData1))
     }
   })
   .catch((error) => console.error('::::::::::::::::"""""""' ,error))
   
   }
 
-  //new add start
+    var articles = [];
+    for (var i = 1; i < getdata.length; i++){
+      console.log("------------UUUUUU--------", getdata[0].name);
+      articles &&
+      articles.push(
+        <>
+          <View key={articles.id} style={{ flexDirection: 'row', justifyContent: 'center'}}>
+          <Text style={[styles.response, {}]}>
+            {getdata[i -1].serial_number}
+          </Text>
+          <Text style={[styles.response, {}]}>
+            {getdata[i -1].name}
+          </Text>
+          <Text style={[styles.response, {}]}>
+            {getdata[i -1].date}
+          </Text>
+        </View>
 
-  const onPressHandler = (id) => {
-    let getdata = [...getdata];           // making copy of renderData data locally
-    let setSelect = [...setSelect];   // making copy of selectedFruits data locally
-
-    for (let data of getdata) {
-      if (data.id == id) {
-
-        data.selected = (data.selected == null) ? true : !data.selected; // making button selcted or not using boolen
-
-        if (data.selected) {        
-          setSelect.push(data.ville);  // push selected fruit value to array
-        } else {
-          setSelect = this.arrayRemove(setSelect, data.seqno)  // remove unselected fruit from array
-        }
-        break;
-      }
-      // console.log(renderData.length)
-      console.log(setSelect.length)
+        <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
+          <TouchableOpacity  style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {i, data: route.params.id})}}>
+            <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>
+              {getdata[i].seqno}
+            </Text>
+            <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>{getdata[i].area_name}</Text>
+          </TouchableOpacity>
+          </View>
+        </>
+      )
     }
-
-    setGetData({ getdata });  // updating current selected button data to state
-    setSelect({ setSelect });  // updating current selected Fruits data to state
-  }
-
-
-  // function which remove value from array and return  
-  const arrayRemove = (arr, value) => {
-
-    return arr.filter(function (geeks) {
-      return geeks != value;
-
-    });
-  }
-
-  //new add end
-
+ 
     return (
       <View style={styles.container}>
         <ScrollView style={{}}>
         <View style={styles.middle}>
-          { getdata && getdata.map((item) => {
+            {articles}
+          
+          {/* { getdata && getdata.map((item) => {
             return(
               <>
               <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
@@ -105,8 +100,8 @@ export default function Menu({navigation, route}){
               </View>
 
               <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
-                <TouchableOpacity style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}}>
-                  <Text key={item.id} value={item.seqno} style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>
+                <TouchableOpacity  style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}}>
+                  <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>
                     {item.seqno}
                   </Text>
                   <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>{item.area_name}</Text>
@@ -114,7 +109,7 @@ export default function Menu({navigation, route}){
                 </View>
               </>
             )
-          })}
+          })} */}
       </View>
       </ScrollView>
       </View>

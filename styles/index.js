@@ -24,7 +24,7 @@ const STYLES = StyleSheet.create({
 
   btnSecondary: {
     height: 50,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     flex: 1,
     flexDirection: 'row',

@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import {StyleSheet, View, Text, Dimensions, TouchableOpacity, Image, FlatList, ScrollView, StatusBar} from 'react-native';
 export const { width, height} = Dimensions.get('window');
 import { Card, Title, Paragraph, Body, CardItem } from 'react-native-paper'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {FontAwesome} from 'react-native-vector-icons/FontAwesome';
 import { ListItem } from 'react-native-elements';
 
 
@@ -9,11 +11,12 @@ export default function Menu({navigation, route}){
     const[getdata, setGetData] = useState([])
     const[select, setSelect] = useState([])
 
-  const { data } = route.params;
+    const { data } = route.params;
+    // console.log("GGGGGGGGGGG", route);
 
   useEffect(() => {
     getAllData();
-  }, []);
+  }, [getdata]);
 
   const getAllData = () => {
     fetch('http://172.104.45.142/get/trip/order/', {
@@ -34,82 +37,74 @@ export default function Menu({navigation, route}){
     if(json.result.message != "Done"){
       alert(`${json.result.message}\n please scan a code again`);
       navigation.navigate('Qrcode')
-          
     }else{
-      var conData = json.result.Trip
-      console.log("KKKKKKKKKKKK", json.result.Trip)
-      var conData1 = json.result.areas
+      let conData = json.result.Trip
+      let conData1 = json.result.areas
+      // console.log("pppppp", conData1);
       setGetData(conData.concat(conData1));
-
-      // console.log("KKKKKKKKKKKK", conData.concat(conData1))
     }
   })
   .catch((error) => console.error('::::::::::::::::"""""""' ,error))
   
   }
 
-    var articles = [];
-    for (var i = 1; i < getdata.length; i++){
-      console.log("------------UUUUUU--------", getdata[0].name);
-      articles &&
-      articles.push(
-        <>
-          <View key={articles.id} style={{ flexDirection: 'row', justifyContent: 'center'}}>
-          <Text style={[styles.response, {}]}>
-            {getdata[i -1].serial_number}
-          </Text>
-          <Text style={[styles.response, {}]}>
-            {getdata[i -1].name}
-          </Text>
-          <Text style={[styles.response, {}]}>
-            {getdata[i -1].date}
-          </Text>
-        </View>
-
-        <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
-          <TouchableOpacity  style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {i, data: route.params.id})}}>
-            <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>
-              {getdata[i].seqno}
-            </Text>
-            <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>{getdata[i].area_name}</Text>
-          </TouchableOpacity>
-          </View>
-        </>
-      )
-    }
- 
     return (
       <View style={styles.container}>
         <ScrollView style={{}}>
         <View style={styles.middle}>
-            {articles}
-          
-          {/* { getdata && getdata.map((item) => {
-            return(
-              <>
-              <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
-                <Text key={item.id} style={[styles.response, {}]}>
-                  {item.serial_number}
-                </Text>
-                <Text style={[styles.response, {}]}>
-                  {item.name}
-                </Text>
-                <Text style={[styles.response, {}]}>
-                  {item.date}
-                </Text>
-              </View>
-
-              <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
-                <TouchableOpacity  style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}}>
-                  <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>
-                    {item.seqno}
+          { getdata && getdata.map((item) => {
+            if(item.clock_in !== false && item.clock_out !== true){
+              return(
+                <>
+                <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'center'}}>
+                  <Text style={[styles.response, {}]}>
+                    {item.serial_number}
                   </Text>
-                  <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>{item.area_name}</Text>
-                </TouchableOpacity>
+                  <Text style={[styles.response, {}]}>
+                    {item.name}
+                  </Text>
+                  <Text style={[styles.response, {}]}>
+                    {item.date}
+                  </Text>
                 </View>
-              </>
-            )
-          })} */}
+  
+                <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
+                  <TouchableOpacity style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}} disabled={true}>
+                    <Text key={item.id} value={item.seqno} style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#0e5a5a', textAlign: 'center' }]}>{item.seqno}</Text>
+                    <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#0e5a5a', textAlign: 'center' }]}>{item.area_name}</Text>
+                  </TouchableOpacity>
+                  <View style={{position: 'relative', }}><Icon name="check-square-o" color={'green'} size={30}/></View>
+                  </View>
+                </>
+              )
+            }else{
+              return(
+                <>
+                <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'center'}}>
+                  <Text style={[styles.response, {}]}>
+                    {item.serial_number}
+                  </Text>
+                  <Text style={[styles.response, {}]}>
+                    {item.name}
+                  </Text>
+                  <Text style={[styles.response, {}]}>
+                    {item.date}
+                  </Text>
+                </View>
+  
+                <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
+                  <TouchableOpacity style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}}>
+                    <Text key={item.id} value={item.seqno} style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>
+                      {item.seqno}
+                    </Text>
+                    <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>{item.area_name}</Text>
+                  </TouchableOpacity>
+                  </View>
+                </>
+              )
+            }
+            
+          })}
       </View>
       </ScrollView>
       </View>
@@ -173,4 +168,3 @@ const styles = StyleSheet.create({
       fontWeight: 'normal',
     }
 })
-

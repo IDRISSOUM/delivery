@@ -1,6 +1,11 @@
 {
     "cSpell.words": [
+        "constdata",
+        "errormail",
+        "errorpassword",
         "getdata",
-        "Qrcode"
-    ]
+        "Qrcode",
+        "seqno"
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

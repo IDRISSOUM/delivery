@@ -3,44 +3,17 @@ import {StyleSheet, View, Text, Dimensions, TouchableOpacity, Image, FlatList, S
 export const { width, height} = Dimensions.get('window');
 // import ImagePicker from 'react-native-image-crop-picker';
 
-const Details = (props) => {
+export default function Details(props){
     const[getdata1, setData1] = useState([])
     const { item, data } = props.route.params;
-
-    // const openGallery = () => {
-    //     ImagePicker.openCamera({
-    //         width: 300,
-    //         height: 300,
-    //         cropping: true,
-    //     }).then(image => {
-    //     console.log(image);
-    //     }).catch(error => {
-    //         if (error.code === 'E_PICKER_CANCELLED') { // here the solution
-    //             return false;
-    //         }
-    //     });;  
-    // }
-
-    // const selectFromGallery = () => {
-    //     ImagePicker.openPicker({
-    //         width: 300,
-    //         height: 300,
-    //         cropping: true
-    //     }).then(image => {
-    //     console.log(image.path);
-    //     }).catch(error => {
-    //         if (error.code === 'E_PICKER_CANCELLED') { // here the solution
-    //             return false;
-    //         }
-    //     });;
-    // }
+    // console.log("-----------hhhhhhhhhhh-------------", props);
 
     useEffect(() => {
         getAllData();
     }, []);
     
     const getAllData = () => {
-    fetch('http://172.104.45.142:8069/create/trip/order/area/clockin/', {
+    fetch('http://172.104.45.142:8069/write/trip/order/area/clockin/', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -50,96 +23,36 @@ const Details = (props) => {
         body: JSON.stringify({
             params:{
                 "serial_number": props.route.params.data,
-                "area": props.route.params.item.area_name
+                "area": props.route.params.item.area_name,
             }
         })
     })
     .then((response) => response.json())
     .then((json) => {
-        console.log("???????????", json.result.message)
-        setData1(json.result.message)
+        console.log("BBBBXXXX", json.result)
+        let constdata = json.result
+        console.log("RRRRRRRRR", constdata);
+        setData1(constdata)
     })
     .catch((error) => console.error('::::::::::::::::"""""""' ,error))
     
     }
 
-    // const sendImageData = async () => {
-    //     const url = 'http://172.104.45.142:8069/create/trip/order/picture/'
-    //     fetch(url, {
-    //         method: 'POST',
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json',
-                
-    //         },
-    //         body: JSON.stringify({
-    //             params:{
-    //                 "serial_number": props.route.params.data,
-    //                 "area": props.route.params.item.area_name,
-    //                 // "doc_image": ,
-                    
-    //             }
-    //         })
-    //     })
-    //     .then((response) => response.json())
-    //     .then((json) => {
-    //         console.log("???????????", json.result.message)
-    //         setData1(json.result.message)
-    //     })
-    //     .catch((error) => console.error('::::::::::::::::"""""""' ,error))
-        
-    // }
-
     return (
         <View style={styles.container}>
             <StatusBar barStyle="auto" />
-            <View style={{textAlign: 'center',}}>
-                <Text style={{fontSize: 16, fontWeight: 'bold', color: '#000', textTransform: 'uppercase', textAlign: 'justify'}}>{getdata1}</Text>
-            </View>
-            {/* <View style={{justifyContent: 'center'}}>
-                <TouchableOpacity onPress={openGallery}
-                style={{
-                    justifyContent: 'center',
-                    borderRadius: 30,
-                    shadowOpacity: 0.29,
-                    shadowRadius: 4.65,
-                    elevation: 2,
-                    padding: 10,
-                    width: 200,
-                    height: 50,
-                    backgroundColor: '#45d8d8'
-                  }}
-                >
-                    <Text style={styles.textt}>
-                        take photo
-                    </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={selectFromGallery}
-                style={{
-                    justifyContent: 'center',
-                    borderRadius: 30,
-                    shadowOpacity: 0.29,
-                    shadowRadius: 4.65,
-                    elevation: 2,
-                    padding: 10,
-                    width: 200,
-                    height: 50,
-                    backgroundColor: '#45d8d8',
-                    marginTop: '10%'
-                  }}
-                >
-                    <Text style={styles.textt1}>
-                        select from gallery
-                    </Text>
-                </TouchableOpacity>
-                
-            </View> */}
+                <View style={{textAlign: 'center',}}>
+                    <Text style={{fontSize: 16, fontWeight: 'bold', color: '#000', textTransform: 'uppercase', textAlign: 'justify'}}>{getdata1.message}</Text>
+                </View>
+                {/* <View style={{justifyContent: 'center',}}>
+                    <TouchableOpacity onPress={() => props.navigation.goBack('Menu1', {getdata1})} style={{backgroundColor: '#45d8d8', alignItems: 'center'}}>
+                        <Text style={{fontSize: 16, textTransform: 'uppercase', textAlign: 'center'}}>Return previous screen</Text>
+                    </TouchableOpacity>
+                </View> */}
         </View>
     );
 };
 
-export default Details;
 
 const styles = StyleSheet.create({
 container: {

@@ -6,6 +6,8 @@ export const { width, height} = Dimensions.get('window');
 // import Icon from 'react-native-vector-icons/Ionicons';
 import COLORS from '../consts/color';
 import STYLES from '../styles';
+import Validation from '../validation/Validation'
+// import validate from 'validation_wrapper'
 
 
 
@@ -13,7 +15,22 @@ import STYLES from '../styles';
 const Login = ({navigation, props}) => {
     const[email, setEmail] = useState("")
     const[password, setPassword] = useState("")
+    const[errormail, setEmailError] = useState("")
+    const[errorpassword, setPasswordError] = useState("")
     const[data, setData] = useState([])
+
+
+    const register = () => {
+      const errormail = validate('email', setEmailError(email))
+      const errorpassword = validate('password', setPasswordError(password))
+  
+      setEmailError(errormail)
+      setPasswordError(errorpassword)
+  
+      if (!errormail && !errorpassword) {
+        alert('Details are valid!')
+      }
+    }
 
     const _handlerSignin = async () => {
 
@@ -41,6 +58,10 @@ const Login = ({navigation, props}) => {
           }
         })
     }
+
+    // if (!emailError && !passwordError) {
+    //   alert("Details are valid!")
+    // }
 
   return (
     <SafeAreaView
@@ -81,13 +102,14 @@ const Login = ({navigation, props}) => {
               color={COLORS.light}
               size={20}
               style={STYLES.inputIcon}
+              secureTextEntry={true}
               onChangeText={(email) => setEmail(email)}
               
             />
             <TextInput
               placeholder="Password"
               style={STYLES.input}
-              secureTextEntry
+              secureTextEntry={true}
               onChangeText={(password) => setPassword(password)}
             />
           </View>
@@ -112,7 +134,7 @@ const Login = ({navigation, props}) => {
           <View
             style={{
               flexDirection: 'row',
-              justifyContent: 'space-evenly',
+              justifyContent: 'space-between',
             }}>
             <View style={STYLES.btnSecondary}>
               <TouchableOpacity onPress={() => {}}>
@@ -132,7 +154,7 @@ const Login = ({navigation, props}) => {
                 />
               </TouchableOpacity>             
             </View>
-            <View style={STYLES.btnSecondary}>
+            {/* <View style={STYLES.btnSecondary}>
               <TouchableOpacity onPress={() => {}}>
                 <Image
                   style={STYLES.btnImage}
@@ -148,7 +170,7 @@ const Login = ({navigation, props}) => {
                   source={require('../assets/microsoft.png')}
                 />
               </TouchableOpacity>          
-            </View>
+            </View> */}
           </View>
         </View>
 

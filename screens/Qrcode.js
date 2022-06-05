@@ -21,7 +21,7 @@ export default function Qrcode({navigation}) {
     const[result, setResult] = useState(null)
 
     useEffect(() => {
-      setScanned(false)
+      setScanned(false);
     }, [scanned])
 
 
@@ -34,7 +34,6 @@ export default function Qrcode({navigation}) {
   const handleBarCodeScanned = ({type, data}) => {
     let dataObj = data;
     setScanned(true);
-    
     sendProductData(dataObj);
   };
 

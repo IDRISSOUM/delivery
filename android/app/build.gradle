@@ -139,7 +139,9 @@ android {
         missingDimensionStrategy 'react-native-camera', 'general'
         vectorDrawables.useSupportLibrary = true
         targetSdkVersion 27
+        multiDexEnabled true
     }
+
     splits {
         abi {
             reset()

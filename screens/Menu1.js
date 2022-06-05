@@ -12,7 +12,6 @@ export default function Menu({navigation, route}){
     const[select, setSelect] = useState([])
 
     const { data } = route.params;
-    // console.log("GGGGGGGGGGG", route);
 
   useEffect(() => {
     getAllData();
@@ -40,11 +39,10 @@ export default function Menu({navigation, route}){
     }else{
       let conData = json.result.Trip
       let conData1 = json.result.areas
-      // console.log("pppppp", conData1);
       setGetData(conData.concat(conData1));
     }
   })
-  .catch((error) => console.error('::::::::::::::::"""""""' ,error))
+  .catch((error) => console.error('::::::::' ,error))
   
   }
 
@@ -53,7 +51,9 @@ export default function Menu({navigation, route}){
         <ScrollView style={{}}>
         <View style={styles.middle}>
           { getdata && getdata.map((item) => {
+            // console.log("VVVCCBBBBBBNNNNN", item);
             if(item.clock_in !== false && item.clock_out !== true){
+              
               return(
                 <>
                 <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'center'}}>
@@ -70,7 +70,7 @@ export default function Menu({navigation, route}){
   
                 <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
                   <TouchableOpacity style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}} disabled={true}>
-                    <Text key={item.id} value={item.seqno} style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#0e5a5a', textAlign: 'center' }]}>{item.seqno}</Text>
+                    <Text value={item.seqno} style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#0e5a5a', textAlign: 'center' }]}>{item.seqno}</Text>
                     <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#0e5a5a', textAlign: 'center' }]}>{item.area_name}</Text>
                   </TouchableOpacity>
                   <View style={{position: 'relative', }}><Icon name="check-square-o" color={'green'} size={30}/></View>
@@ -80,7 +80,7 @@ export default function Menu({navigation, route}){
             }else{
               return(
                 <>
-                <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'center'}}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
                   <Text style={[styles.response, {}]}>
                     {item.serial_number}
                   </Text>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: 'bold',
       fontFamily: 'italic',
-      padding: '3%'
+      padding: '3%',
     },
     responses: {
       fontSize: 15,

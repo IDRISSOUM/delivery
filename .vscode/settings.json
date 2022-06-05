@@ -3,9 +3,11 @@
         "constdata",
         "errormail",
         "errorpassword",
+        "galery",
         "getdata",
         "Qrcode",
-        "seqno"
+        "seqno",
+        "Takeimg"
     ],
     "java.configuration.updateBuildConfiguration": "automatic"
 }

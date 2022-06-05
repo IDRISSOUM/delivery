@@ -6,7 +6,7 @@ export const { width, height} = Dimensions.get('window');
 // import Icon from 'react-native-vector-icons/Ionicons';
 import COLORS from '../consts/color';
 import STYLES from '../styles';
-import Validation from '../validation/Validation'
+import { AsyncStorage } from 'react-native';
 // import validate from 'validation_wrapper'
 
 
@@ -15,24 +15,14 @@ import Validation from '../validation/Validation'
 const Login = ({navigation, props}) => {
     const[email, setEmail] = useState("")
     const[password, setPassword] = useState("")
-    const[errormail, setEmailError] = useState("")
-    const[errorpassword, setPasswordError] = useState("")
     const[data, setData] = useState([])
+    const [userDetails, setUserDetails] = React.useState([]);
 
 
-    const register = () => {
-      const errormail = validate('email', setEmailError(email))
-      const errorpassword = validate('password', setPasswordError(password))
-  
-      setEmailError(errormail)
-      setPasswordError(errorpassword)
-  
-      if (!errormail && !errorpassword) {
-        alert('Details are valid!')
-      }
-    }
-
+    
     const _handlerSignin = async () => {
+      var data = `{"jsonrpc":"2.0", "params":{"db":"odoo15","login": "${email}","password": "${password}"}`;
+      console.log("YyyYYYYYYYYYYYYY", data);
 
         const url = 'http://172.104.45.142/web/session/authenticate';
 
@@ -43,11 +33,13 @@ const Login = ({navigation, props}) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify( 
-            {"jsonrpc":"2.0", 
+            {
+            "jsonrpc":"2.0", 
             "params":
-                {"db":"odoo15",
-                "login":"drivera@gmail.com" ,
-                "password": "drivera"
+                {
+                "db": "odoo15",
+                "login": 'drivera@gmail.com',
+                "password": 'drivera'
                 }
             }
             )
@@ -59,9 +51,6 @@ const Login = ({navigation, props}) => {
         })
     }
 
-    // if (!emailError && !passwordError) {
-    //   alert("Details are valid!")
-    // }
 
   return (
     <SafeAreaView
@@ -94,16 +83,17 @@ const Login = ({navigation, props}) => {
               size={20}
               style={STYLES.inputIcon}
             />
-            <TextInput placeholder="Email" style={STYLES.input} />
+            <TextInput 
+            placeholder="Email" 
+            style={STYLES.input} 
+            onChangeText={(email) => setEmail(email)}
+            />
           </View>
           <View style={STYLES.inputContainer}>
             <Icon
               name="lock-outline"
               color={COLORS.light}
-              size={20}
               style={STYLES.inputIcon}
-              secureTextEntry={true}
-              onChangeText={(email) => setEmail(email)}
               
             />
             <TextInput
@@ -154,23 +144,6 @@ const Login = ({navigation, props}) => {
                 />
               </TouchableOpacity>             
             </View>
-            {/* <View style={STYLES.btnSecondary}>
-              <TouchableOpacity onPress={() => {}}>
-                <Image
-                  style={STYLES.btnImage}
-                  source={require('../assets/app.png')}
-                />
-              </TouchableOpacity>           
-            </View>
-            <View style={{width: 10}}></View>
-            <View style={STYLES.btnSecondary}>
-              <TouchableOpacity onPress={() => {}}>
-                <Image
-                  style={STYLES.btnImage}
-                  source={require('../assets/microsoft.png')}
-                />
-              </TouchableOpacity>          
-            </View> */}
           </View>
         </View>
 

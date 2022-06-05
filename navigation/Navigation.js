@@ -7,6 +7,7 @@ import Menu1 from '../screens/Menu1'
 import MenuQr from '../screens/MenuQr'
 import Qrcode from '../screens/Qrcode'
 import Details from '../screens/Details';
+import Takeimg from '../screens/Takeimg'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -87,6 +88,13 @@ export function AppNavigator() {
       <Stack.Screen
         name="Details"
         component={Details}
+        options={{
+          // header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="Takeimg"
+        component={Takeimg}
         options={{
           // header: () => null,
         }}

@@ -12,6 +12,7 @@ export default function Menu({navigation, route}){
     const[select, setSelect] = useState([])
 
     const { data } = route.params;
+    // console.log("-----------iiiiiii------", route)
 
   useEffect(() => {
     getAllData();
@@ -52,8 +53,7 @@ export default function Menu({navigation, route}){
         <View style={styles.middle}>
           { getdata && getdata.map((item) => {
             // console.log("VVVCCBBBBBBNNNNN", item);
-            if(item.clock_in !== false && item.clock_out !== true){
-              
+            if(item.clock_in !== false && item.clock_out !== true){          
               return(
                 <>
                 <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'center'}}>

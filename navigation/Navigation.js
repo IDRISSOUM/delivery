@@ -26,7 +26,9 @@ export function AppNavigator() {
         name="Home"
         component={Home}
         options={{
+          // header: () => null,
           title: 'Welcome to Delivery App',
+          // headerTransparent: true,
           headerTitleStyle: {
             alignItems: 'center'
           },
@@ -37,6 +39,7 @@ export function AppNavigator() {
         component={Login}
         options={{
           title: 'Login',
+          // headerTransparent: true,
           justifyContent: 'center',
           headerTitleStyle: {
             alignItems: 'center'
@@ -56,6 +59,7 @@ export function AppNavigator() {
         name="Menu"
         component={Menu}
         options={{
+          // header: () => null,
           headerTitleStyle: {
             alignItems: 'center'
           },
@@ -65,13 +69,17 @@ export function AppNavigator() {
       <Stack.Screen
         name="MenuQr"
         component={MenuQr}
-        options={{}}
+        options={{
+          header: () => null,
+        }}
       />
 
       <Stack.Screen
         name="Menu1"
         component={Menu1}
         options={{
+          header: () => null,
+          // headerTransparent: true,
           headerTitleStyle: {
           },
         }}
@@ -89,14 +97,14 @@ export function AppNavigator() {
         name="Details"
         component={Details}
         options={{
-          // header: () => null,
+          header: () => null,
         }}
       />
       <Stack.Screen
         name="Takeimg"
         component={Takeimg}
         options={{
-          // header: () => null,
+          header: () => null,
         }}
       />
     </Stack.Navigator>

@@ -6,7 +6,6 @@ export const { width, height} = Dimensions.get('window');
 // import Icon from 'react-native-vector-icons/Ionicons';
 import COLORS from '../consts/color';
 import STYLES from '../styles';
-import { AsyncStorage } from 'react-native';
 // import validate from 'validation_wrapper'
 
 
@@ -38,8 +37,8 @@ const Login = ({navigation, props}) => {
             "params":
                 {
                 "db": "odoo15",
-                "login": 'drivera@gmail.com',
-                "password": 'drivera'
+                "login": email,
+                "password": password
                 }
             }
             )

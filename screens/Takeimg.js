@@ -1,76 +1,18 @@
-import React, { useEffect, useState, useRef } from 'react';
-import {StyleSheet, View, Text, Dimensions, TouchableOpacity, Image, FlatList, ScrollView, StatusBar,Button} from 'react-native';
-export const { width, height} = Dimensions.get('window');
-import ImagePicker from 'react-native-image-crop-picker';
+import { NavigationContainer } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
+import { Alert, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, StatusBar } from 'react-native';
 
-export default function Details(props){
-    const[galery, setGalery] = useState("")
-    const[take, setTake] = useState(null)
+
+
+
+export default function TAKEIMG(props){
     const[getdata, setGetdata] = useState([])
-    // const { sendItem, data } = props.params;
 
-    console.log("9999999999", props.route.params.data)
-    console.log("9999999999mmmmmmm", props.route.params.sendItem)
-
-
-    useEffect(() => {
-        sendImageData();
-    }, []);
-
-    const openGallery = () => {
-        ImagePicker.openCamera({
-            mediaType: "photo",
-            width: 300,
-            height: 300,
-            cropping: true,
-            includeBase64: true,
-            includeExif: true,
-            multiple: true,
-        }).then(image => {
-            if(image != null){
-                console.log("CEST BON CEST BON BON", image)
-                setTake(image)
-            }else{
-                console.log("true ok");
-                return false;
-            }
-        }).catch(error => {
-            if (error.code === 'E_PICKER_CANCELLED') { // here the solution
-                return false;
-            }
-        });;  
-    }
-
-    const selectFromGallery = () => {
-        ImagePicker.openPicker({
-            mediaType: "photo",
-            width: 300,
-            height: 300,
-            cropping: true,
-            includeBase64: true,
-            includeExif: true,
-            multiple: true
-        }).then(image => {
-            if(image != ""){
-                console.log("CEST BON CEST BON BON", image)
-                setGalery(image)
-                
-            }else{
-                console.log("true ok");
-                return false;
-            }
-        }).catch(error => {
-            if (error.code === 'E_PICKER_CANCELLED') { // here the solution
-                return false;
-            }
-        });;
-    }
-    console.log("UUUUUUU&&&&&&&&&&", galery);
+    // useEffect(() => {
+        
+    // }, []);
 
     const sendImageData = async () => {
-        if(null){
-            return false;
-        }else{
             const url = 'http://172.104.45.142:8069/create/trip/order/picture/'
                 fetch(url, {
                     method: 'POST',
@@ -84,127 +26,182 @@ export default function Details(props){
                         "params":{
                             "serial_number": props.route.params.data,
                             "area": props.route.params.sendItem,
-                            "picture_image": galery.data,
+                            "picture_image": props.route.params.sendIMG,
                         }
                     })
                 })
                 .then((response) => response.json())
                 .then((json) => {
-                    console.log("???????????-------7775444---------", json)
-                    setGetdata(json)
+                    console.log("MMMMMCCNCNCNCB", json.result.message)
+                    setGetdata(json.result.message)
                 })
                 .catch((error) => console.error('::::::::::::::::"""""""' ,error))
         }
-        
-        
-    }
+        console.log("000000", getdata)
 
     return (
         <View style={styles.container}>
             <StatusBar barStyle="auto" />
-                <View style={{textAlign: 'center',}}>
-                    {/* {
-                        galery != "" && <Image source={{uri: `data:${galery.mime};base64,${galery.data}`}} style={{ resizeMode: 'contain', width: 200, height: 200}}/>
-                        
-                    } */}
-                    {/* <Text style={{fontSize: 16, fontWeight: 'bold', color: '#000', textTransform: 'uppercase', textAlign: 'justify'}}>{getdata1.message}</Text> */}
-                </View>
-                <View style={{justifyContent: 'center'}}>
-                <TouchableOpacity onPress={() => {openGallery}}
-                style={{
-                    justifyContent: 'center',
-                    borderRadius: 30,
-                    shadowOpacity: 0.29,
-                    shadowRadius: 4.65,
-                    elevation: 2,
-                    padding: 10,
-                    width: 200,
-                    height: 50,
-                    backgroundColor: '#45d8d8'
-                  }}
-                >
-                    <Text style={styles.textt}>
-                        take photo
-                    </Text>
-                </TouchableOpacity>
+                {
+                   getdata && getdata == "" ? 
+                   <><View>
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', textAlign: 'justify', color: 'red' }}>
+                            Loading data...
+                        </Text>
+                    </View><View style={{
+                        padding: '10%',
+                        alignItems: 'center',
+                    }}>
+                    <View style={styles.Uni}>
+                        <Text style={{fontSize: 30, textAlign: 'center', bottom: -20}}>👇</Text>
+                        <TouchableOpacity
+                            style={{
+                                justifyContent: 'center',
+                                borderRadius: 25,
+                                shadowOpacity: 0.29,
+                                shadowRadius: 4.65,
+                                elevation: 2,
+                                width: 200,
+                                height: 50,
+                                backgroundColor: '#45d8d8',
+                                marginTop: '10%'
+                            }}
+                            onPress={() => { sendImageData(); } }
+                            disabled={false}
+                            >
+                            <Text style={styles.text}>
+                                confirm shipment
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
 
-                <TouchableOpacity onPress={selectFromGallery}
-                style={{
-                    justifyContent: 'center',
-                    borderRadius: 30,
-                    shadowOpacity: 0.29,
-                    shadowRadius: 4.65,
-                    elevation: 2,
-                    padding: 10,
-                    width: 200,
-                    height: 50,
-                    backgroundColor: '#45d8d8',
-                    marginTop: '10%'
-                  }}
-                >
-                    <Text style={styles.textt1}>
-                        select from gallery
-                    </Text>
-                </TouchableOpacity>
+                    <View style={styles.Uni}>
+                        <TouchableOpacity
+                            style={{
+                                justifyContent: 'center',
+                                borderRadius: 30,
+                                shadowOpacity: 0.29,
+                                shadowRadius: 4.65,
+                                elevation: 2,
+                                padding: 10,
+                                width: 200,
+                                height: 50,
+                                backgroundColor: '#45d8d8',
+                                marginTop: '10%'
+                            }}
+                            onPress={() => props.navigation.popToTop()}
+                        >
+                            <Text style={styles.text}>
+                                home
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View></> 
+            :
+            <><View style={[styles.part, { textAlign: 'center' }]}>
+                <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#000', textTransform: 'uppercase', textAlign: 'center', borderBottomWidth: 0.5, borderBottomColor: '#000', marginBottom: 10, }}>Clock-out is:</Text>
+                <Text style={{ fontSize: 16, fontWeight: 'bold', textAlign: 'justify', color: 'red' }}>{getdata}</Text>
+            </View><View style={{
+                padding: '10%',
+                alignItems: 'center',
+            }}>
+                    <View style={styles.Uni}>
+                        <Text style={{
+                            textAlign: 'center',
+                            fontStyle: 'italic',
+                            bottom: -20
+                        }}>image sent with success</Text>
+                        <TouchableOpacity
+                            style={{
+                                justifyContent: 'center',
+                                borderRadius: 25,
+                                shadowOpacity: 0.29,
+                                shadowRadius: 4.65,
+                                elevation: 2,
+                                width: 200,
+                                height: 50,
+                                backgroundColor: '#FF5733',
+                                marginTop: '10%'
+                            }}
+                            onPress={() => { sendImageData()}}
+                            disabled={true}
+                            >
+                            <Text style={styles.text}>
+                                confirm shipment
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
 
-                <TouchableOpacity onPress={sendImageData}
-                style={{
-                    justifyContent: 'center',
-                    borderRadius: 30,
-                    shadowOpacity: 0.29,
-                    shadowRadius: 4.65,
-                    elevation: 2,
-                    padding: 10,
-                    width: 200,
-                    height: 50,
-                    backgroundColor: '#45d8d8',
-                    marginTop: '10%'
-                  }}
-                >
-                    <Text style={styles.textt1}>
-                        send image
-                    </Text>
-                </TouchableOpacity>
-                
-            </View>
+                    <View style={styles.Uni}>
+                        <TouchableOpacity
+                            style={{
+                                justifyContent: 'center',
+                                borderRadius: 30,
+                                shadowOpacity: 0.29,
+                                shadowRadius: 4.65,
+                                elevation: 2,
+                                padding: 10,
+                                width: 200,
+                                height: 50,
+                                backgroundColor: '#45d8d8',
+                                marginTop: '10%'
+                            }}
+                            onPress={() => props.navigation.popToTop()}
+                        >
+                            <Text style={styles.text}>
+                                home
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View></>
+                }
         </View>
     );
-};
+}
 
 
 const styles = StyleSheet.create({
-container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-    justifyContent: 'space-evenly'
-},
-button: {
-    justifyContent: 'center',
-    
-},
-buttonText: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    backgroundColor: '#45d8d8'
-},
-timerText: {
-    color: '#fff',
-    fontSize: 30,
-    marginBottom: 20
-},
-textt: {
-    textAlign: 'center', 
-    textTransform: 'uppercase', 
-    color: 'white',
-    fontSize: 15,
-    // backgroundColor: '#45d8d8'
-},
-textt1: {
-    textAlign: 'center', 
-    textTransform: 'uppercase', 
-    color: 'white',
-    fontSize: 15,
-    // backgroundColor: '#45d8d8'
-},
-});
+    container: {
+        flex: 1,
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center',
+        justifyContent: 'space-evenly'
+    },
+    button: {
+        justifyContent: 'center',
+        
+    },
+    buttonText: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        backgroundColor: '#45d8d8'
+    },
+    timerText: {
+        color: '#fff',
+        fontSize: 30,
+        marginBottom: 20
+    },
+    textt: {
+        textAlign: 'center', 
+        textTransform: 'uppercase', 
+        color: 'white',
+        fontSize: 15,
+        // backgroundColor: '#45d8d8'
+    },
+    textt1: {
+        textAlign: 'center', 
+        textTransform: 'uppercase', 
+        color: 'white',
+        fontSize: 15,
+        // backgroundColor: '#45d8d8'
+    },
+    part:{
+        margin: 25
+    },
+    text: {
+        color: 'white',
+        fontSize: 15,
+        textAlign: 'center',
+        textTransform: 'uppercase'
+      },
+    });

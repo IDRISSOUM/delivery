@@ -37,9 +37,6 @@ export default function Qrcode({navigation}) {
     sendProductData(dataObj);
   };
 
-  
-
-
     return(
 
       <QRCodeScanner

@@ -32,6 +32,7 @@ export default function Qrcode({navigation}) {
 
 
   const handleBarCodeScanned = ({type, data}) => {
+    // console.log("LLLLLLLLL", data)
     let dataObj = data;
     setScanned(true);
     sendProductData(dataObj);

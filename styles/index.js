@@ -8,7 +8,7 @@ const STYLES = StyleSheet.create({
     paddingLeft: 30,
     borderBottomWidth: 1,
     borderColor: COLORS.light,
-    borderBottomWidth: 0.5,
+    // borderBottomWidth: 0.5,
     flex: 1,
     fontSize: 18,
   },

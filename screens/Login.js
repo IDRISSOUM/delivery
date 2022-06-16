@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, View, Text, TextInput, Image, ScrollView, TouchableOpacity, Dimensions} from 'react-native';
+import {SafeAreaView, View, Text, TextInput, Image, ScrollView, TouchableOpacity, Dimensions, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 export const { width, height} = Dimensions.get('window');
 // import Icon from 'react-native-vector-icons/Ionicons';
 import COLORS from '../consts/color';
 import STYLES from '../styles';
-// import validate from 'validation_wrapper'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -17,12 +17,13 @@ const Login = ({navigation, props}) => {
     const[data, setData] = useState([])
     const [userDetails, setUserDetails] = React.useState([]);
 
-
     
     const _handlerSignin = async () => {
       var data = `{"jsonrpc":"2.0", "params":{"db":"odoo15","login": "${email}","password": "${password}"}`;
-      console.log("YyyYYYYYYYYYYYYY", data);
 
+      if(email.length == 0 && password.length == 0){
+        Alert.alert('Warning!', 'please enter your credentials')
+      }else{
         const url = 'http://172.104.45.142/web/session/authenticate';
 
         fetch(url, {
@@ -44,11 +45,17 @@ const Login = ({navigation, props}) => {
             )
         }).then( response => response.json()).then(response => {
           if(response){
-            setData(response.result)
-            navigation.navigate('Menu', {data: response.result})
+            // console.log(response.result.username)
+            if(email != response.result.username){
+              Alert.alert("Warning", "please enter the correct credentials")
+            }else{
+              setData(response.result)
+              navigation.navigate('Menu', {data: response.result})
+            }
           }
         })
     }
+  }
 
 
   return (

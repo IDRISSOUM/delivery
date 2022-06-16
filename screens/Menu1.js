@@ -9,14 +9,16 @@ import { ListItem } from 'react-native-elements';
 
 export default function Menu({navigation, route}){
     const[getdata, setGetData] = useState([])
-    const[select, setSelect] = useState([])
 
     const { data } = route.params;
-    // console.log("-----------iiiiiii------", route)
 
   useEffect(() => {
     getAllData();
   }, [getdata]);
+
+  useEffect(() => {
+    // getValues();
+  }, []);
 
   const getAllData = () => {
     fetch('http://172.104.45.142/get/trip/order/', {
@@ -34,12 +36,14 @@ export default function Menu({navigation, route}){
   })
   .then((response) => response.json())
   .then((json) => {
+    // console.log("UUUU------IIIII", json.result)
     if(json.result.message != "Done"){
       alert(`${json.result.message}\n please scan a code again`);
       navigation.navigate('Qrcode')
     }else{
       let conData = json.result.Trip
       let conData1 = json.result.areas
+      console.log("OOOOOOOOOOOIII--------PPPLLLLLLL", conData1)
       setGetData(conData.concat(conData1));
     }
   })
@@ -52,11 +56,10 @@ export default function Menu({navigation, route}){
         <ScrollView style={{}}>
         <View style={styles.middle}>
           { getdata && getdata.map((item) => {
-            // console.log("VVVCCBBBBBBNNNNN", item);
-            if(item.clock_in !== false && item.clock_out !== true){          
+            if(item.clock_out != false){          
               return(
                 <>
-                <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'center'}}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center'}}  key={item.id}>
                   <Text style={[styles.response, {}]}>
                     {item.serial_number}
                   </Text>
@@ -68,12 +71,11 @@ export default function Menu({navigation, route}){
                   </Text>
                 </View>
   
-                <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
                   <TouchableOpacity style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}} disabled={true}>
-                    <Text value={item.seqno} style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#0e5a5a', textAlign: 'center' }]}>{item.seqno}</Text>
-                    <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#0e5a5a', textAlign: 'center' }]}>{item.area_name}</Text>
+                    <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#339CFF', textAlign: 'center' }]}>{item.seqno}</Text>
+                    <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#339CFF', textAlign: 'center' }]}>{item.area_name}</Text>
                   </TouchableOpacity>
-                  <View style={{position: 'relative', }}><Icon name="check-square-o" color={'green'} size={30}/></View>
                   </View>
                 </>
               )
@@ -93,11 +95,11 @@ export default function Menu({navigation, route}){
                 </View>
   
                 <View style={{ flexDirection: 'row', justifyContent: 'center',  }}>
-                  <TouchableOpacity style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}}>
-                    <Text key={item.id} value={item.seqno} style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>
+                  <TouchableOpacity style={{ width: '75%', alignContent: 'center' }} onPress={() => {getAllData(); navigation.navigate('Details', {item, data: route.params.id})}} disabled={false}>
+                    <Text key={item.id} value={item.seqno} style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#FDD407', textAlign: 'center' }]}>
                       {item.seqno}
                     </Text>
-                    <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#45d8d8', textAlign: 'center' }]}>{item.area_name}</Text>
+                    <Text style={[styles.responses, { fontWeight: 'bold', backgroundColor: '#FDD407', textAlign: 'center' }]}>{item.area_name}</Text>
                   </TouchableOpacity>
                   </View>
                 </>

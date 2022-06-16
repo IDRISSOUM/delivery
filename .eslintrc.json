@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": [
+        "airbnb-base", "prettier"
+    ],
+    "plugins": [
+        // ...
+        "react-hooks",
+        "prettier"
+      ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+          }
+    },
+    "rules": {
+        "comma-dangle": 0,
+        "no-unused-vars": "warn",
+        "no-console": 1,
+        "no-unexpected-multiline": "warn"
+    }
+}

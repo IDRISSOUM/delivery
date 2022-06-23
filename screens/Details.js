@@ -121,7 +121,7 @@ export default function Details({ route, navigation }) {
       body: JSON.stringify({
         params: {
           serial_number: route.params.data,
-          area: route.params.item1.area_name,
+          area: route.params.item1.area_code,
         },
       }),
     })
@@ -148,7 +148,7 @@ export default function Details({ route, navigation }) {
       body: JSON.stringify({
         params: {
           serial_number: route.params.data,
-          area: route.params.item1.area_name,
+          area: route.params.item1.area_code,
         },
       }),
     })
@@ -175,7 +175,7 @@ export default function Details({ route, navigation }) {
       body: JSON.stringify({
         params: {
           serial_number: route.params.data,
-          area_code: route.params.item1.area_name,
+          area_code: route.params.item1.area_code,
         },
       }),
     })
@@ -206,7 +206,7 @@ export default function Details({ route, navigation }) {
           jsonrpc: "2.0",
           params: {
             serial_number: route.params.data,
-            area: route.params.item1.area_name,
+            area: route.params.item1.area_code,
             picture_image: image.data,
           },
         }),

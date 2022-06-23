@@ -52,19 +52,13 @@ export default function Menu({ navigation, route }) {
         } else {
           let conData = json.result.Trip;
           let conData1 = json.result.areas;
-          // console.log("OOOOOOOOOOOIII--------PPPLLLLLLL", conData1);
+          console.log("OOOOOOOOOOOIII--------PPPLLLLLLL", conData1);
           setGetData(conData);
           setArea(conData1);
         }
       })
       .catch((error) => console.error("::::::::", error));
   };
-  // console.log(
-  //   "GGGGGG",
-  //   getdata.map((item) => {
-  //     return item.serial_number;
-  //   })
-  // );
   return (
     <View style={styles.container}>
       <ScrollView style={{}}>
@@ -73,7 +67,7 @@ export default function Menu({ navigation, route }) {
             getdata.map((item) => {
               return (
                 <View
-                  key={item.id}
+                  key={item.facility_id}
                   style={{
                     flexDirection: "row",
                     justifyContent: "center",
@@ -82,8 +76,9 @@ export default function Menu({ navigation, route }) {
                   <Text style={[styles.response, {}]}>
                     {item.serial_number}
                   </Text>
-                  <Text style={[styles.response, {}]}>{item.name}</Text>
-                  <Text style={[styles.response, {}]}>{item.date}</Text>
+                  <Text style={[styles.response, {}]}>
+                    {item.assigned_datetime}
+                  </Text>
                 </View>
               );
             })}
@@ -95,10 +90,10 @@ export default function Menu({ navigation, route }) {
                 return (
                   <>
                     <View
-                      key={item1.seqno}
                       style={{ flexDirection: "row", justifyContent: "center" }}
                     >
                       <TouchableOpacity
+                        key={item1.ordinal}
                         style={{
                           width: "80%",
                           alignContent: "center",
@@ -123,7 +118,7 @@ export default function Menu({ navigation, route }) {
                             },
                           ]}
                         >
-                          {item1.seqno}
+                          {item1.ordinal}
                         </Text>
                         <Text
                           style={[
@@ -135,7 +130,7 @@ export default function Menu({ navigation, route }) {
                             },
                           ]}
                         >
-                          {item1.area_name}
+                          {item1.area_code}
                         </Text>
                       </TouchableOpacity>
                     </View>
@@ -145,11 +140,10 @@ export default function Menu({ navigation, route }) {
                 return (
                   <>
                     <View
-                      key={item1.seqno}
                       style={{ flexDirection: "row", justifyContent: "center" }}
                     >
                       <TouchableOpacity
-                        key={item1.seqno}
+                        key={item1.ordinal}
                         style={{
                           width: "80%",
                           alignContent: "center",
@@ -166,7 +160,7 @@ export default function Menu({ navigation, route }) {
                       >
                         <Text
                           key={item1.id}
-                          value={item1.seqno}
+                          value={item1.ordinal}
                           style={[
                             styles.responses,
                             {
@@ -176,7 +170,7 @@ export default function Menu({ navigation, route }) {
                             },
                           ]}
                         >
-                          {item1.seqno}
+                          {item1.ordinal}
                         </Text>
                         <Text
                           style={[
@@ -188,7 +182,7 @@ export default function Menu({ navigation, route }) {
                             },
                           ]}
                         >
-                          {item1.area_name}
+                          {item1.area_code}
                         </Text>
                       </TouchableOpacity>
                     </View>

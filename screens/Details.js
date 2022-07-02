@@ -16,6 +16,7 @@ import {
 import { color } from "react-native-elements/dist/helpers";
 export const { width, height } = Dimensions.get("window");
 import ImagePicker from "react-native-image-crop-picker";
+import { LogBox } from "react-native";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import IconEvilIcons from "react-native-vector-icons/EvilIcons";
@@ -39,6 +40,16 @@ export default function Details({ route, navigation }) {
       // setClockout(); // This worked for me
     };
   }, [getvalue]);
+
+  useEffect(() => {
+    // Ignore log notification by message:
+    LogBox.ignoreLogs([
+      "Warning: Possible Unhandled Promise Rejection (id: 0)",
+    ]);
+
+    // Ignore all log notifications:
+    LogBox.ignoreAllLogs();
+  }, []);
 
   const pickSingleWithCamera = (cropping, mediaType = "photo") => {
     ImagePicker.openCamera({

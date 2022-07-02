@@ -13,6 +13,7 @@ import {
 
 import QRCodeScanner from "react-native-qrcode-scanner";
 import { RNCamera } from "react-native-camera";
+import { LogBox } from "react-native";
 
 export default function Qrcode({ navigation }) {
   const scanner = useRef(null);
@@ -23,6 +24,14 @@ export default function Qrcode({ navigation }) {
   useEffect(() => {
     setScanned(false);
   }, [scanned]);
+
+  useEffect(() => {
+    // Ignore log notification by message:
+    LogBox.ignoreLogs(["Warning: ..."]);
+
+    // Ignore all log notifications:
+    LogBox.ignoreAllLogs();
+  }, []);
 
   const sendProductData = (data) => {
     navigation.navigate("Menu1", { id: data });

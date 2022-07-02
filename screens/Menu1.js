@@ -15,6 +15,7 @@ import { Card, Title, Paragraph, Body, CardItem } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { FontAwesome } from "react-native-vector-icons/FontAwesome";
 import { ListItem } from "react-native-elements";
+import { LogBox } from "react-native";
 
 export default function Menu({ navigation, route }) {
   const [getdata, setGetData] = useState([]);
@@ -27,7 +28,11 @@ export default function Menu({ navigation, route }) {
   }, [getdata]);
 
   useEffect(() => {
-    // getValues();
+    // Ignore log notification by message:
+    LogBox.ignoreLogs(["Warning: ..."]);
+
+    // Ignore all log notifications:
+    LogBox.ignoreAllLogs();
   }, []);
 
   const getAllData = () => {
@@ -243,7 +248,7 @@ const styles = StyleSheet.create({
     color: "rgb(0,122,255)",
   },
   response: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "bold",
     fontFamily: "italic",
     padding: "3%",

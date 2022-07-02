@@ -16,19 +16,39 @@ export const { width, height } = Dimensions.get("window");
 // import Icon from 'react-native-vector-icons/Ionicons';
 import COLORS from "../consts/color";
 import STYLES from "../styles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Base64 } from "js-base64";
+import { LogBox } from "react-native";
 
 const Login = ({ navigation, props }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const [data, setData] = useState([]);
   const [userDetails, setUserDetails] = React.useState([]);
 
-  const _handlerSignin = async () => {
-    var data = `{"jsonrpc":"2.0", "params":{"db":"test","login": "${email}","password": "${password}"}`;
+  useEffect(() => {
+    // Ignore log notification by message:
+    LogBox.ignoreLogs(["Warning: ..."]);
 
-    if (email.length == 1 && password.length == 1) {
+    // Ignore all log notifications:
+    LogBox.ignoreAllLogs();
+  }, []);
+
+  const handleOnchange = (text, input) => {
+    setInputs((prevState) => ({ ...prevState, [input]: text }));
+    // console.log("MMMMMDMDMM", input);
+  };
+
+  const _handlerSignin = async () => {
+    var data = `{"jsonrpc":"2.0", "params":{"db":"test","login": "${inputs.email}","password": "${inputs.password}"}`;
+
+    if (inputs.email.length == 0 && inputs.password.length == 0) {
       Alert.alert("Warning!", "please enter your credentials");
+    } else if (!inputs.email.match(/\S+@\S+\.\S+/)) {
+      Alert.alert("Please input a valid email", "email");
     } else {
       const url = "http://172.104.45.142/web/session/authenticate";
 
@@ -42,16 +62,16 @@ const Login = ({ navigation, props }) => {
           jsonrpc: "2.0",
           params: {
             db: "test",
-            login: email,
-            password: password,
+            login: inputs.email,
+            password: inputs.password,
           },
         }),
       })
         .then((response) => response.json())
         .then((response) => {
           if (response) {
-            //   console.log(response.result.username);
-            if (email != response.result.username) {
+            console.log(response.result);
+            if (response.result == undefined) {
               Alert.alert("Warning", "please enter the correct credentials");
             } else {
               setData(response.result);
@@ -108,7 +128,7 @@ const Login = ({ navigation, props }) => {
             <TextInput
               placeholder="Email"
               style={STYLES.input}
-              onChangeText={(email) => setEmail(email)}
+              onChangeText={(text) => handleOnchange(text, "email")}
             />
           </View>
           <View style={STYLES.inputContainer}>
@@ -121,7 +141,7 @@ const Login = ({ navigation, props }) => {
               placeholder="Password"
               style={STYLES.input}
               secureTextEntry={true}
-              onChangeText={(password) => setPassword(password)}
+              onChangeText={(text) => handleOnchange(text, "password")}
             />
           </View>
           <View>
